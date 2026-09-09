@@ -38,7 +38,9 @@ Report with branch state:
 
 **If `GIT_DIR == GIT_COMMON` (or in a submodule):** You are in a normal repo checkout.
 
-Has the user already indicated their worktree preference in your instructions? If not, ask for consent before creating a worktree:
+Has the user already indicated their worktree preference in your instructions? Treat any explicit direction to work directly in the current checkout, current branch, or named existing project folder—or any request not to create an additional directory—as a preference to work in place. This remains in effect for that project until the user changes it. Do not ask about a worktree and do not create one; skip to Step 3.
+
+General permission to modify files is not by itself a worktree preference. If the user has not expressed a location preference, ask for consent before creating a worktree:
 
 > "Would you like me to set up an isolated worktree? It protects your current branch from changes."
 
@@ -144,6 +146,7 @@ Ready to implement <feature-name>
 | Situation | Action |
 |-----------|--------|
 | Already in linked worktree | Skip creation (Step 0) |
+| User said current checkout/folder/branch or no extra directory | Work in place; do not ask |
 | In a submodule | Treat as normal repo (Step 0 guard) |
 | Native worktree tool available | Use it (Step 1a) |
 | No native tool | Git worktree fallback (Step 1b) |
